@@ -20,6 +20,7 @@ const bm = editor.BlockManager;
           </g>
         </svg>
         <div class="gjs-block-label">Iframe</div>`,
+                category: 'Basic',
                 content: `<iframe class="iframe" src=""></iframe>`,
                 attributes: {
                 title: 'Insert a new Iframe'
