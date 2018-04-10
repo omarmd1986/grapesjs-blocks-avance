@@ -1,6 +1,6 @@
 {
   "name": "grapesjs-plugin-iframe",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "GrapesJS Plugin to add and edit Iframes",
   "main": "dist/grapesjs-plugin-iframe.min.js",
   "scripts": {
