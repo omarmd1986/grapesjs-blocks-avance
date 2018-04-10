@@ -1,7 +1,6 @@
 export default (editor, config = {}) => {
-    const bm = editor.BlockManager;
-
-    bm.add('iframe', {
+const bm = editor.BlockManager;
+        bm.add('iframe', {
         label: `
         <svg class="gjs-block-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 470 470" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 470 470">
           <g>
@@ -20,11 +19,10 @@ export default (editor, config = {}) => {
             <path d="m306.712,351.047h-147.512c-4.142,0-7.5,3.357-7.5,7.5s3.358,7.5 7.5,7.5h147.513c4.142,0 7.5-3.357 7.5-7.5s-3.359-7.5-7.501-7.5z"/>
           </g>
         </svg>
-        <div class="gjs-block-label">Iframe</div>
-        `,
-        content: `<iframe src='' width='100%' height='350' frameborder='0' allowfullscreen></iframe>`,
-        attributes: {
-            title: 'Insert a new Iframe'
-        }
-    });
+        <div class="gjs-block-label">Iframe</div>`,
+                content: `<iframe class="iframe" src=''></iframe>`,
+                attributes: {
+                title: 'Insert a new Iframe'
+                }
+        });
 }
