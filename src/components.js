@@ -5,56 +5,65 @@ export default (editor, config = {}) => {
     const defaultModel = defaultType.model;
     const defaultView = defaultType.view;
 
+    const videoType = domc.getType('video');
+    const videoView = videoType.view;
+    const videoModel = videoType.model;
+
     var traits = [];
     traits.push({
         type: 'text',
         placeholder: '//url.to.page.com',
-        label: 'Src',
+        label: 'Source',
+        changeProp: 1,
         name: 'src'
-    });
-    traits.push({
-        type: 'checkbox',
-        label: 'Allow full screen',
-        name: 'allowfullscreen'
-    });
-    traits.push({
-        type: 'number',
-        label: 'Border',
-        name: 'frameborder'
     });
 
     var randomID = function () {
         return Math.random().toString(36).substr(2, 9);
     };
 
+    let model = defaultModel.extend({
+        // Extend default properties
+        defaults: Object.assign({}, defaultModel.prototype.defaults, {
+            // Can't drop other elements inside it
+            droppable: false,
+            // Traits (Settings)
+            traits: traits
+        }),
+        init: function () {
+            this.set('attributes', {
+                id: randomID(),
+                width: '100%',
+                src: '',
+                frameborder: 0,
+                allowfullscreen: true
+            });
+        }
+    }, {
+        isComponent: function (el) {
+            var result = {};
+            if (el.tagName === 'IFRAME' && el.className === 'iframe') {
+                result = {type: 'iframe'};
+                result.src = el.src;
+            }
+            return result;
+        }
+    });
+
     domc.addType('iframe', {
         // Define the Model
-        model: defaultModel.extend({
-            // Extend default properties
-            defaults: Object.assign({}, defaultModel.prototype.defaults, {
-                // Can't drop other elements inside it
-                droppable: false,
-                // Traits (Settings)
-                traits: traits
-            }),
-            init: function () {
-                this.set('attributes', {
-                    id: randomID(),
-                    width: '100%',
-                    height: '350',
-                    frameborder: 0,
-                    allowfullscreen: true
-                });
-            }
-        }, {
-            isComponent: function (el) {
-                if (el.tagName === 'IFRAME' && el.className === 'iframe') {
-                    return {type: 'iframe'};
-                }
-            }
-        }),
+        model: model,
 
         // Define the View
-        view: defaultType.view
+        view: videoView.extend({
+            renderSource: function () {
+                var el = document.createElement('iframe');
+                el.src = this.attr.src;
+                el.frameBorder = 0;
+                el.setAttribute('allowfullscreen', true);
+                this.initVideoEl(el);
+                return el;
+            }
+        })
     });
 }
