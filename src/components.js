@@ -22,7 +22,7 @@ export default (editor, config = {}) => {
         return Math.random().toString(36).substr(2, 9);
     };
 
-    let model = defaultModel.extend({
+    let model = videoModel.extend({
         // Extend default properties
         defaults: Object.assign({}, defaultModel.prototype.defaults, {
             // Can't drop other elements inside it
@@ -30,15 +30,28 @@ export default (editor, config = {}) => {
             // Traits (Settings)
             traits: traits
         }),
+
+        initialize: function (o, opt) {
+            videoModel.prototype.initialize.apply(this, arguments);
+
+        },
+
+        updateTraits: function () {
+            var traits = this.getSourceTraits();
+            this.loadTraits(traits);
+            this.em.trigger('change:selectedComponent');
+        },
+
+        getSourceTraits: function () {
+            return traits;
+        },
+
         init: function () {
             this.set('attributes', {
                 id: randomID(),
                 src: '',
                 frameborder: 0,
                 allowfullscreen: true,
-                style: {
-                    color: 'red'
-                }
             });
         }
     }, {
@@ -69,9 +82,13 @@ export default (editor, config = {}) => {
                 });
             },
 
+            openModal: function (e) {
+                videoView.prototype.initialize.apply(this, [model]);
+            },
+
             renderSource: function () {
                 var el = document.createElement('iframe');
-                el.src = this.attr.src;
+                el.src = this.model.get('src') === window.location.href ? '' : this.model.get('src');
                 el.frameBorder = 0;
                 el.setAttribute('allowfullscreen', false);
                 this.initVideoEl(el);
