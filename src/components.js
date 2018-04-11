@@ -33,7 +33,6 @@ export default (editor, config = {}) => {
         init: function () {
             this.set('attributes', {
                 id: randomID(),
-                width: '100%',
                 src: '',
                 frameborder: 0,
                 allowfullscreen: true
@@ -60,8 +59,11 @@ export default (editor, config = {}) => {
                 var el = document.createElement('iframe');
                 el.src = this.attr.src;
                 el.frameBorder = 0;
-                el.setAttribute('allowfullscreen', true);
+                el.setAttribute('allowfullscreen', false);
                 this.initVideoEl(el);
+                setTimeout(function () {
+                    el.parentElement.setAttribute('style', 'position: relative; height:0; padding-bottom:56.25%;');
+                }, 100)
                 return el;
             }
         })
