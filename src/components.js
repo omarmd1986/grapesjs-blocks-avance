@@ -35,7 +35,10 @@ export default (editor, config = {}) => {
                 id: randomID(),
                 src: '',
                 frameborder: 0,
-                allowfullscreen: true
+                allowfullscreen: true,
+                style: {
+                    color: 'red'
+                }
             });
         }
     }, {
@@ -55,15 +58,27 @@ export default (editor, config = {}) => {
 
         // Define the View
         view: videoView.extend({
+            initialize: function (opts) {
+                videoView.prototype.initialize.apply(this, [opts])
+
+                const model = this.model;
+                let ele = this.el;
+
+                this.listenTo(model, 'change', function () {
+                    ele.setAttribute('style', 'position: relative; height:0; padding-bottom:56.25%;')
+                });
+            },
+
             renderSource: function () {
                 var el = document.createElement('iframe');
                 el.src = this.attr.src;
                 el.frameBorder = 0;
                 el.setAttribute('allowfullscreen', false);
                 this.initVideoEl(el);
+                el.style.position = 'absolute';
                 setTimeout(function () {
-                    el.parentElement.setAttribute('style', 'position: relative; height:0; padding-bottom:56.25%;');
-                }, 100)
+                    el.parentElement.setAttribute('style', 'position: relative; height:0; padding-bottom:56.25%;')
+                }, 10);
                 return el;
             }
         })
