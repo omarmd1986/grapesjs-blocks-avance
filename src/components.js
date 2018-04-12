@@ -56,7 +56,7 @@ export default (editor, config = {}) => {
         }
     }, {
         isComponent: function (el) {
-            var result = {};
+            var result = '';
             if (el.tagName === 'IFRAME' && el.className === 'iframe') {
                 result = {type: 'iframe'};
                 result.src = el.src;
@@ -65,39 +65,41 @@ export default (editor, config = {}) => {
         }
     });
 
+    let view = videoView.extend({
+        initialize: function (opts) {
+            videoView.prototype.initialize.apply(this, [opts])
+
+            const model = this.model;
+            let ele = this.el;
+
+            this.listenTo(model, 'change', function () {
+                ele.setAttribute('style', 'position: relative; height:0; padding-bottom:56.25%;')
+            });
+        },
+
+        openModal: function (e) {
+            videoView.prototype.initialize.apply(this, [model]);
+        },
+
+        renderSource: function () {
+            var el = document.createElement('iframe');
+            el.src = this.model.get('src') === window.location.href ? '' : this.model.get('src');
+            el.frameBorder = 0;
+            el.setAttribute('allowfullscreen', false);
+            this.initVideoEl(el);
+            el.style.position = 'absolute';
+            setTimeout(function () {
+                el.parentElement.setAttribute('style', 'position: relative; height:0; padding-bottom:56.25%;')
+            }, 10);
+            return el;
+        }
+    });
+
     domc.addType('iframe', {
         // Define the Model
         model: model,
 
         // Define the View
-        view: videoView.extend({
-            initialize: function (opts) {
-                videoView.prototype.initialize.apply(this, [opts])
-
-                const model = this.model;
-                let ele = this.el;
-
-                this.listenTo(model, 'change', function () {
-                    ele.setAttribute('style', 'position: relative; height:0; padding-bottom:56.25%;')
-                });
-            },
-
-            openModal: function (e) {
-                videoView.prototype.initialize.apply(this, [model]);
-            },
-
-            renderSource: function () {
-                var el = document.createElement('iframe');
-                el.src = this.model.get('src') === window.location.href ? '' : this.model.get('src');
-                el.frameBorder = 0;
-                el.setAttribute('allowfullscreen', false);
-                this.initVideoEl(el);
-                el.style.position = 'absolute';
-                setTimeout(function () {
-                    el.parentElement.setAttribute('style', 'position: relative; height:0; padding-bottom:56.25%;')
-                }, 10);
-                return el;
-            }
-        })
+        view: view
     });
 }
