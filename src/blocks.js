@@ -1,6 +1,12 @@
 export default (editor, config = {}) => {
-const bm = editor.BlockManager;
-        bm.add('iframe', {
+
+    const blockManager = editor.BlockManager;
+
+    var isActive = function (opt) {
+        return (config.blocks.indexOf(opt) !== -1);
+    };
+
+    isActive('iframe') && blockManager.add('iframe', {
         label: `
         <svg class="gjs-block-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 470 470" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 470 470">
           <g>
@@ -20,8 +26,8 @@ const bm = editor.BlockManager;
           </g>
         </svg>
         <div class="gjs-block-label">Iframe</div>`,
-                category: 'Basic',
-                content: `
+        category: 'Avance',
+        content: `
                 <style>
                     div.iframe-container{
                         position:relative;
@@ -49,8 +55,115 @@ const bm = editor.BlockManager;
                     }
                 </style>
                     <div class="iframe-container"><iframe class="iframe" src=""></iframe></div>`,
-                attributes: {
-                title: 'Insert a new Iframe'
-                }
-        });
+        attributes: {
+            title: 'Insert a new Iframe'
+        }
+    });
+
+    // Containers
+    // Header
+    isActive('header') && blockManager.add('header', {
+        label: `
+        <svg class="gjs-block-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path class="gjs-block-svg-path" d="M22,9 C22,8.4 21.5,8 20.75,8 L3.25,8 C2.5,8 2,8.4 2,9 L2,15 C2,15.6 2.5,16 3.25,16 L20.75,16 C21.5,16 22,15.6 22,15 L22,9 Z M21,15 L3,15 L3,9 L21,9 L21,15 Z"></path>
+            <polygon class="gjs-block-svg-path" points="4 10 5 10 5 14 4 14"></polygon>
+          </svg>
+          </svg>
+          <div class="gjs-block-label">Header</div>
+        `,
+        attributes: {},
+        category: config.containerCategory,
+        content: `<header style="padding: 100px 0px;"></header>`
+    });
+    // Sections
+    isActive('section') && blockManager.add('section', {
+        label: `
+        <svg class="gjs-block-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path class="gjs-block-svg-path" d="M22,7.5 C22,6.6 21.5,6 20.75,6 L3.25,6 C2.5,6 2,6.6 2,7.5 L2,16.5 C2,17.4 2.5,18 3.25,18 L20.75,18 C21.5,18 22,17.4 22,16.5 L22,7.5 Z M21,17 L3,17 L3,7 L21,7 L21,17 Z"></path>
+            <polygon class="gjs-block-svg-path" points="4 8 5 8 5 12 4 12"></polygon>
+            <polygon class="gjs-block-svg-path" points="19 7 20 7 20 17 19 17"></polygon>
+            <polygon class="gjs-block-svg-path" points="20 8 21 8 21 9 20 9"></polygon>
+            <polygon class="gjs-block-svg-path" points="20 15 21 15 21 16 20 16"></polygon>
+          </svg>
+          <div class="gjs-block-label">Section</div>
+        `,
+        attributes: {},
+        category: config.containerCategory,
+        content: `<section style="padding: 100px 0px;"></section>`
+    });
+    // Footer
+    isActive('footer') && blockManager.add('footer', {
+        label: `
+        <svg class="gjs-block-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path class="gjs-block-svg-path" d="M22,9 C22,8.4 21.5,8 20.75,8 L3.25,8 C2.5,8 2,8.4 2,9 L2,15 C2,15.6 2.5,16 3.25,16 L20.75,16 C21.5,16 22,15.6 22,15 L22,9 Z M21,15 L3,15 L3,9 L21,9 L21,15 Z" fill-rule="nonzero"></path>
+            <rect class="gjs-block-svg-path" x="4" y="11.5" width="16" height="1"></rect>
+          </svg>
+          <div class="gjs-block-label">Footer</div>
+        `,
+        attributes: {},
+        category: config.containerCategory,
+        content: `<footer style="padding: 100px 0px;"></footer>`
+    });
+
+    // Marketing
+    var style = `style="border-collapse: collapse;border-spacing: 0;width: 100%;"`;
+
+    let gridItem =
+            `
+        <table class="grid-item-card" ${style}>
+        <tr>
+          <td class="grid-item-card-cell">
+            <img class="grid-item-image" style="width: 100%;" src="http://placehold.it/250x150/78c5d6/fff/" alt="Image"/>
+            <table class="grid-item-card-body">
+              <tr>
+                <td class="grid-item-card-content">
+                  <h1 class="card-title">Title here</h1>
+                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>`;
+
+    isActive('grid-items') && blockManager.add('grid-items', {
+        label: `Grid Items`,
+        category: config.gridsCategory,
+        content: `<div style="overflow-x:auto;"><table class="grid-item-row" ${style}>
+        <tr>
+          <td class="grid-item-cell2-l">${gridItem}</td>
+          <td class="grid-item-cell2-r">${gridItem}</td>
+        </tr>
+      </table>`,
+        attributes: {class: 'fa fa-th'}
+    });
+
+    let listItem =
+            `
+            <div style="overflow-x:auto;">
+            <table class="list-item" ${style}>
+        <tr>
+          <td class="list-item-cell">
+            <table class="list-item-content">
+              <tr class="list-item-row">
+                <td class="list-cell-left">
+                  <img class="list-item-image" style="width: 100%;" src="http://placehold.it/150x150/78c5d6/fff/" alt="Image"/>
+                </td>
+                <td class="list-cell-right">
+                  <h1 class="card-title">Title here</h1>
+                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table></div>`;
+
+    isActive('list-items') && blockManager.add('list-items', {
+        label: `List Items`,
+        category: config.gridsCategory,
+        content: listItem + listItem,
+        attributes: {class: 'fa fa-th-list'}
+    });
 }

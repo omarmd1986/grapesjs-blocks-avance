@@ -1,8 +1,7 @@
 {
-  "name": "grapesjs-plugin-iframe",
+  "name": "grapesjs-blocks-avance",
   "version": "0.0.13",
-  "description": "GrapesJS Plugin to add and edit Iframes",
-  "main": "dist/grapesjs-plugin-iframe.min.js",
+  "description": "GrapesJS Plugin to add more blocks and components", "main": "dist/grapesjs-blocks-avance.min.js",
   "scripts": {
     "lint": "eslint src",
     "v:patch": "npm version --no-git-tag-version patch",
@@ -11,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/omarmd1986/grapesjs-plugin-iframe.git"
+    "url": "https://github.com/omarmd1986/grapesjs-blocks-avance.git"
   },
   "keywords": [
     "grapesjs",

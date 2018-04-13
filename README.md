@@ -1,11 +1,11 @@
-# GrapesJS Plugin Iframe
+# GrapesJS blocks avance
 
 ## Usage
 
 ```html
 <link href="https://unpkg.com/grapesjs/dist/css/grapes.min.css" rel="stylesheet"/>
 <script src="https://unpkg.com/grapesjs"></script>
-<script src="path/to/grapesjs-plugin-iframe.min.js"></script>
+<script src="path/to/grapesjs-blocks-avance.min.js"></script>
 
 <div id="gjs"></div>
 
@@ -13,7 +13,7 @@
   var editor = grapesjs.init({
       container : '#gjs',
       ...
-      plugins: ['gjs-iframe'],
+      plugins: ['gjs-blocks-avance'],
   });
 </script>
 ```
@@ -27,8 +27,8 @@
 Clone the repository
 
 ```sh
-$ git clone https://github.com/omarmd1986/grapesjs-plugin-iframe.git
-$ cd grapesjs-plugin-iframe
+$ git clone https://github.com/omarmd1986/grapesjs-blocks-avance.git
+$ cd grapesjs-blocks-avance
 ```
 
 Install dependencies

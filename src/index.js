@@ -2,14 +2,18 @@ import grapesjs from 'grapesjs';
 import loadComponents from './components';
 import loadBlocks from './blocks';
 
-export default grapesjs.plugins.add('gjs-iframe', (editor, opts = {}) => {
-  const options = { ...{
-    // default options
-  },  ...opts };
+export default grapesjs.plugins.add('gjs-blocks-avance', (editor, opts = {}) => {
+    const options = {...{
+                blocks: ['grid-items', 'list-items', 'header', 'section', 'footer', 'iframe'],
 
-  // Add components
-  loadComponents(editor, options);
+                gridsCategory: `Marketing`,
 
-  // Add blocks
+                containerCategory: `Containers`
+        }, ...opts};
+
+    // Add components
+    loadComponents(editor, options);
+
+    // Add blocks
     loadBlocks(editor, options);
 });
