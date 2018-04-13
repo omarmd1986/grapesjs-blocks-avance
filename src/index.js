@@ -8,7 +8,9 @@ export default grapesjs.plugins.add('gjs-blocks-avance', (editor, opts = {}) => 
 
                 gridsCategory: `Marketing`,
 
-                containerCategory: `Containers`
+                containerCategory: `Containers`,
+
+                avanceCategory: `Avance`
         }, ...opts};
 
     // Add components

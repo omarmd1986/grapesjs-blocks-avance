@@ -1,7 +1,8 @@
 {
   "name": "grapesjs-blocks-avance",
-  "version": "0.0.13",
-  "description": "GrapesJS Plugin to add more blocks and components", "main": "dist/grapesjs-blocks-avance.min.js",
+  "version": "0.0.14",
+  "description": "GrapesJS Plugin to add more blocks and components",
+  "main": "dist/grapesjs-blocks-avance.min.js",
   "scripts": {
     "lint": "eslint src",
     "v:patch": "npm version --no-git-tag-version patch",

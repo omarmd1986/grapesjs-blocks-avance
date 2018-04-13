@@ -26,7 +26,7 @@ export default (editor, config = {}) => {
           </g>
         </svg>
         <div class="gjs-block-label">Iframe</div>`,
-        category: 'Avance',
+        category: config.avanceCategory,
         content: `
                 <style>
                     div.iframe-container{
