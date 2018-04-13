@@ -4,7 +4,7 @@
 
 |Option|Description|Default|
 |-|-|-
-|`blocks`|Blocks|`['grid-items', 'list-items', 'header', 'section', 'footer', 'iframe'] (all)`|
+|`blocks`|Blocks|`['grid-items', 'list-items', 'header', 'section', 'footer', 'iframe', 'link-block', 'quote', 'text-basic'] (all)`|
 |`gridsCategory`|Grids category name|`Marketing`|
 |`containerCategory`|Containers category name|`Containers`|
 |`avanceCategory`|Avance category name|`Avance`|

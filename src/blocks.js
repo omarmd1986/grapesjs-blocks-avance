@@ -2,9 +2,43 @@ export default (editor, config = {}) => {
 
     const blockManager = editor.BlockManager;
 
-    var isActive = function (opt) {
-        return (config.blocks.indexOf(opt) !== -1);
-    };
+    var isActive = opt => config.blocks.indexOf(opt) >= 0;
+
+    isActive('link-block') && blockManager.add('link-block', {
+        category: config.avanceCategory,
+        label: 'Link Block',
+        attributes: {class: 'fa fa-link'},
+        content: {
+            type: 'link',
+            editable: false,
+            droppable: true,
+            style: {
+                display: 'inline-block',
+                padding: '5px',
+                'min-height': '50px',
+                'min-width': '50px'
+            }
+        }
+    });
+
+    isActive('quote') && blockManager.add('quote', {
+        label: 'Quote',
+        category: config.avanceCategory,
+        attributes: {class: 'fa fa-quote-right'},
+        content: `<blockquote class="quote">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore ipsum dolor sit
+      </blockquote>`
+    });
+
+    isActive('text-basic') && blockManager.add('text-basic', {
+        category: config.avanceCategory,
+        label: 'Text section',
+        attributes: {class: 'gjs-fonts gjs-f-h1p'},
+        content: `<section class="bdg-sect">
+      <h1 class="heading">Insert title here</h1>
+      <p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+      </section>`
+    });
 
     isActive('iframe') && blockManager.add('iframe', {
         label: `
