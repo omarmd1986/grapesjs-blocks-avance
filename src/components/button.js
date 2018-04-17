@@ -1,4 +1,4 @@
-import {btnPrimaryClass, btnSuccessClass, btnInfoClass, btnWarningClass, btnDangerClass, btnDefaultClass, btnLgClass, btnSmClass, btnXsClass, btnStyle} from '../consts';
+import {btnPrimaryClass, btnSuccessClass, btnInfoClass, btnWarningClass, btnDangerClass, btnDefaultClass, btnLgClass, btnSmClass, btnXsClass} from '../consts';
 
 export default (editor, config = {}) => {
     const domc = editor.DomComponents;

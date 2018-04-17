@@ -9,7 +9,7 @@ import {btnStyle} from './consts'
     // Button
     isActive('button') && blockManager.add('button', {
         label: `Button`,
-        category: config.gridsCategory,
+        category: config.avanceCategory,
         content: `<a class="btn">CLICK</a> ${btnStyle}`,
         attributes: {class: 'fa fa-plus-square'}
     });
