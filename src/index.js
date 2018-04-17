@@ -4,7 +4,7 @@ import loadBlocks from './blocks';
 
 export default grapesjs.plugins.add('gjs-blocks-avance', (editor, opts = {}) => {
     const options = {...{
-                blocks: ['grid-items', 'list-items', 'header', 'section', 'footer', 'iframe', 'link-block', 'quote', 'text-basic'],
+                blocks: ['grid-items', 'list-items', 'header', 'section', 'footer', 'iframe', 'link-block', 'quote', 'text-basic', 'button'],
 
                 gridsCategory: `Marketing`,
 

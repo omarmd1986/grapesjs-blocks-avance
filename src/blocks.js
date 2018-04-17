@@ -1,13 +1,23 @@
-export default (editor, config = {}) => {
+import {btnStyle} from './consts'
+
+        export default (editor, config = {}) => {
 
     const blockManager = editor.BlockManager;
 
     var isActive = opt => config.blocks.indexOf(opt) >= 0;
 
+    // Button
+    isActive('button') && blockManager.add('button', {
+        label: `Button`,
+        category: config.gridsCategory,
+        content: `<a class="btn">CLICK</a> ${btnStyle}`,
+        attributes: {class: 'fa fa-plus-square'}
+    });
+
     isActive('link-block') && blockManager.add('link-block', {
         category: config.avanceCategory,
         label: 'Link Block',
-        attributes: {class: 'fa fa-link'},
+        attributes: {class: 'fa fa-th-large'},
         content: {
             type: 'link',
             editable: false,

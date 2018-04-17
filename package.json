@@ -1,13 +1,13 @@
 {
   "name": "grapesjs-blocks-avance",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "GrapesJS Plugin to add more blocks and components",
   "main": "dist/grapesjs-blocks-avance.min.js",
   "scripts": {
     "lint": "eslint src",
     "v:patch": "npm version --no-git-tag-version patch",
     "build": "npm run v:patch && webpack --env.production",
-    "start": "webpack-dev-server --open --progress --colors"
+    "start": "webpack-dev-server --watch-poll --open --progress --colors"
   },
   "repository": {
     "type": "git",
