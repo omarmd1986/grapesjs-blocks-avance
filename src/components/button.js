@@ -61,7 +61,7 @@ export default (editor, config = {}) => {
                 return result;
             }
             if (el.tagName === 'A' && el.className.includes('btn')) {
-                result = {type: 'button'};
+                result = {type: 'marketing-button'};
             }
             return result;
         }
@@ -96,7 +96,7 @@ export default (editor, config = {}) => {
 
     });
 
-    domc.addType('button', {
+    domc.addType('marketing-button', {
         // Define the Model
         model: model,
 
