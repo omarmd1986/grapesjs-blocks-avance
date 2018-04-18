@@ -1,6 +1,7 @@
 import grapesjs from 'grapesjs';
 import loadComponents from './components';
 import loadBlocks from './blocks';
+import {btnStyle} from './consts';
 
 export default grapesjs.plugins.add('gjs-blocks-avance', (editor, opts = {}) => {
     const options = {...{
@@ -10,7 +11,9 @@ export default grapesjs.plugins.add('gjs-blocks-avance', (editor, opts = {}) => 
 
                 containerCategory: `Containers`,
 
-                avanceCategory: `Avance`
+                avanceCategory: `Avance`,
+
+                btnStyles: btnStyle
         }, ...opts};
 
     // Add components

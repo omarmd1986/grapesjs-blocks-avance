@@ -1,6 +1,4 @@
-import {btnStyle} from './consts'
-
-        export default (editor, config = {}) => {
+export default (editor, config = {}) => {
 
     const blockManager = editor.BlockManager;
 
@@ -9,8 +7,8 @@ import {btnStyle} from './consts'
     // Button
     isActive('button') && blockManager.add('button', {
         label: `Button`,
-        category: config.avanceCategory,
-        content: `<a class="btn">CLICK</a> ${btnStyle}`,
+        category: config.gridsCategory,
+        content: `<a class="btn">CLICK</a> ${config.btnStyles}`,
         attributes: {class: 'fa fa-plus-square'}
     });
 
