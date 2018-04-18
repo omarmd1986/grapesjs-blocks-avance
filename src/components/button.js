@@ -60,7 +60,7 @@ export default (editor, config = {}) => {
             if (!result || result === '') {
                 return result;
             }
-            if (el.tagName === 'A' && el.className.includes('btn')) {
+            if (el.tagName === 'A' && el.className.includes('btn') && el.getAttribute('data-type') === 'btn') {
                 result = {type: 'marketing-button'};
             }
             return result;

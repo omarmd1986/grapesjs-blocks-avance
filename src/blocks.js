@@ -8,7 +8,7 @@ export default (editor, config = {}) => {
     isActive('button') && blockManager.add('button', {
         label: `Button`,
         category: config.gridsCategory,
-        content: `<a class="btn">CLICK</a> ${config.btnStyles}`,
+        content: `<a class="btn" data-type="btn">CLICK</a> ${config.btnStyles}`,
         attributes: {class: 'fa fa-plus-square'}
     });
 
