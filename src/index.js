@@ -11,7 +11,7 @@ export default grapesjs.plugins.add('gjs-blocks-avance', (editor, opts = {}) => 
 
                 containerCategory: `Containers`,
 
-                avanceCategory: `Avance`,
+                avanceCategory: `Advanced`,
 
                 btnStyles: btnStyle
         }, ...opts};
