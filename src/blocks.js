@@ -5,14 +5,14 @@ export default (editor, config = {}) => {
     var isActive = opt => config.blocks.indexOf(opt) >= 0;
 
     // Button
-    isActive('button') && blockManager.add('button', {
+    isActive('button') && blockManager.add(`${config.prefixName}-button`, {
         label: `Button`,
         category: config.gridsCategory,
         content: `<a class="btn" data-type="btn">CLICK</a> ${config.btnStyles}`,
         attributes: {class: 'fa fa-plus-square'}
     });
 
-    isActive('link-block') && blockManager.add('link-block', {
+    isActive('link-block') && blockManager.add(`${config.prefixName}-link-block`, {
         category: config.avanceCategory,
         label: 'Link Block',
         attributes: {class: 'fa fa-th-large'},
@@ -29,7 +29,7 @@ export default (editor, config = {}) => {
         }
     });
 
-    isActive('quote') && blockManager.add('quote', {
+    isActive('quote') && blockManager.add(`${config.prefixName}-quote`, {
         label: 'Quote',
         category: config.avanceCategory,
         attributes: {class: 'fa fa-quote-right'},
@@ -38,7 +38,7 @@ export default (editor, config = {}) => {
       </blockquote>`
     });
 
-    isActive('text-basic') && blockManager.add('text-basic', {
+    isActive('text-basic') && blockManager.add(`${config.prefixName}-text-basic`, {
         category: config.avanceCategory,
         label: 'Text section',
         attributes: {class: 'gjs-fonts gjs-f-h1p'},
@@ -48,7 +48,7 @@ export default (editor, config = {}) => {
       </section>`
     });
 
-    isActive('iframe') && blockManager.add('iframe', {
+    isActive('iframe') && blockManager.add(`${config.prefixName}-iframe`, {
         label: `
         <svg class="gjs-block-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 470 470" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 470 470">
           <g>
@@ -104,7 +104,7 @@ export default (editor, config = {}) => {
 
     // Containers
     // Header
-    isActive('header') && blockManager.add('header', {
+    isActive('header') && blockManager.add(`${config.prefixName}-header`, {
         label: `
         <svg class="gjs-block-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path class="gjs-block-svg-path" d="M22,9 C22,8.4 21.5,8 20.75,8 L3.25,8 C2.5,8 2,8.4 2,9 L2,15 C2,15.6 2.5,16 3.25,16 L20.75,16 C21.5,16 22,15.6 22,15 L22,9 Z M21,15 L3,15 L3,9 L21,9 L21,15 Z"></path>
@@ -118,7 +118,7 @@ export default (editor, config = {}) => {
         content: `<header style="padding: 100px 0px;"></header>`
     });
     // Sections
-    isActive('section') && blockManager.add('section', {
+    isActive('section') && blockManager.add(`${config.prefixName}-section`, {
         label: `
         <svg class="gjs-block-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path class="gjs-block-svg-path" d="M22,7.5 C22,6.6 21.5,6 20.75,6 L3.25,6 C2.5,6 2,6.6 2,7.5 L2,16.5 C2,17.4 2.5,18 3.25,18 L20.75,18 C21.5,18 22,17.4 22,16.5 L22,7.5 Z M21,17 L3,17 L3,7 L21,7 L21,17 Z"></path>
@@ -134,7 +134,7 @@ export default (editor, config = {}) => {
         content: `<section style="padding: 100px 0px;"></section>`
     });
     // Footer
-    isActive('footer') && blockManager.add('footer', {
+    isActive('footer') && blockManager.add(`${config.prefixName}-footer`, {
         label: `
         <svg class="gjs-block-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path class="gjs-block-svg-path" d="M22,9 C22,8.4 21.5,8 20.75,8 L3.25,8 C2.5,8 2,8.4 2,9 L2,15 C2,15.6 2.5,16 3.25,16 L20.75,16 C21.5,16 22,15.6 22,15 L22,9 Z M21,15 L3,15 L3,9 L21,9 L21,15 Z" fill-rule="nonzero"></path>
@@ -169,7 +169,7 @@ export default (editor, config = {}) => {
       </table>
     </div>`;
 
-    isActive('grid-items') && blockManager.add('grid-items', {
+    isActive('grid-items') && blockManager.add(`${config.prefixName}-grid-items`, {
         label: `Grid Items`,
         category: config.gridsCategory,
         content: `<div style="overflow-x:auto;"><table class="grid-item-row" ${style}>
@@ -202,7 +202,7 @@ export default (editor, config = {}) => {
         </tr>
       </table></div>`;
 
-    isActive('list-items') && blockManager.add('list-items', {
+    isActive('list-items') && blockManager.add(`${config.prefixName}-list-items`, {
         label: `List Items`,
         category: config.gridsCategory,
         content: listItem + listItem,

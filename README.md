@@ -4,7 +4,8 @@
 
 |Option|Description|Default|
 |-|-|-
-|`blocks`|Blocks|`['grid-items', 'list-items', 'header', 'section', 'footer', 'iframe', 'link-block', 'quote', 'text-basic'] (all)`|
+|`blocks`|Blocks|`['grid-items', 'list-items', 'header', 'section', 'footer', 'iframe', 'link-block', 'quote', 'text-basic', 'button'] (all)`|
+|`prefixName`|Prefix to blocks name|`blocks-advanced`|
 |`gridsCategory`|Grids category name|`Marketing`|
 |`containerCategory`|Containers category name|`Containers`|
 |`avanceCategory`|Avance category name|`Avance`|

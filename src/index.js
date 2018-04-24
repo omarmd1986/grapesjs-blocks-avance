@@ -6,6 +6,8 @@ import {btnStyle} from './consts';
 export default grapesjs.plugins.add('gjs-blocks-avance', (editor, opts = {}) => {
     const options = {...{
                 blocks: ['grid-items', 'list-items', 'header', 'section', 'footer', 'iframe', 'link-block', 'quote', 'text-basic', 'button'],
+                
+                prefixName: 'blocks-advanced',
 
                 gridsCategory: `Marketing`,
 
