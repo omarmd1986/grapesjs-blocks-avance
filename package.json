@@ -1,6 +1,6 @@
 {
   "name": "grapesjs-blocks-avance",
-  "version": "0.0.24",
+  "version": "0.0.25",
   "description": "GrapesJS Plugin to add more blocks and components",
   "main": "dist/grapesjs-blocks-avance.min.js",
   "scripts": {

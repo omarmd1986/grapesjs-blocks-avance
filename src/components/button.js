@@ -55,7 +55,7 @@ export default (editor, config = {}) => {
         })
     }, {
         isComponent: function (el) {
-            var result = {};//linkModel.isComponent(el);
+            var result = '';//linkModel.isComponent(el);
 //
 //            if (!result || result === '') {
 //                return result;
