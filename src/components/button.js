@@ -55,14 +55,15 @@ export default (editor, config = {}) => {
         })
     }, {
         isComponent: function (el) {
-            var result = linkModel.isComponent(el);
-
-            if (!result || result === '') {
-                return result;
-            }
+            var result = {};//linkModel.isComponent(el);
+//
+//            if (!result || result === '') {
+//                return result;
+//            }
             if (el.tagName === 'A' && el.className.includes('btn') && el.getAttribute('data-type') === 'btn') {
                 result = {type: 'marketing-button'};
             }
+            console.log(result)
             return result;
         }
     });
