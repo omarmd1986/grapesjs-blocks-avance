@@ -55,15 +55,12 @@ export default (editor, config = {}) => {
         })
     }, {
         isComponent: function (el) {
-            var result = '';//linkModel.isComponent(el);
-//
-//            if (!result || result === '') {
-//                return result;
-//            }
+            var result = '';
+
             if (el.tagName === 'A' && el.className.includes('btn') && el.getAttribute('data-type') === 'btn') {
                 result = {type: 'marketing-button'};
             }
-            console.log(result)
+
             return result;
         }
     });
@@ -71,6 +68,8 @@ export default (editor, config = {}) => {
     let view = linkView.extend({
 
         init: function () {
+            linkView.prototype.init();
+            
             let model = this.model;
 
             this.listenTo(model, 'change:btnStyle', this.updateButton);
