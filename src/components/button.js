@@ -68,7 +68,6 @@ export default (editor, config = {}) => {
     let view = linkView.extend({
 
         init: function (...args) {
-            linkView.prototype.init.apply(this, args);
             
             let model = this.model;
 
@@ -77,6 +76,8 @@ export default (editor, config = {}) => {
 
             // To update the view
             this.updateButton();
+            
+            linkView.prototype.init.apply(this, args);
         },
 
         updateButton: function () {
