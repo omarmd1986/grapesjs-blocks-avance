@@ -68,7 +68,7 @@ export default (editor, config = {}) => {
     let view = linkView.extend({
 
         init: function () {
-            linkView.prototype.init();
+            linkView.prototype.init.apply(this);
             
             let model = this.model;
 
