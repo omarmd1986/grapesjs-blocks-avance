@@ -208,4 +208,18 @@ export default (editor, config = {}) => {
         content: listItem + listItem,
         attributes: {class: 'fa fa-th-list'}
     });
+    
+    // Progress bar.
+    
+    isActive('progress-bar') && blockManager.add(`${config.prefixName}-progress-bar`, {
+        label: `Progress Bar`,
+        category: config.gridsCategory,
+        content: `
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%;">40%</div>
+            </div>
+            ${config.progressBarStyle}
+            `,
+        attributes: {class: 'fa fa-battery-half'}
+    });
 }
