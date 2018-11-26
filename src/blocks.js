@@ -215,9 +215,7 @@ export default (editor, config = {}) => {
         label: `Progress Bar`,
         category: config.gridsCategory,
         content: `
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%;">40%</div>
-            </div>
+            <div class="progress"></div>
             ${config.progressBarStyle}
             `,
         attributes: {class: 'fa fa-battery-half'}

@@ -8,7 +8,7 @@ export default (editor, config = {}) => {
     const defaultView = defaultType.view;
 
     let traits = defaultModel.prototype.defaults.traits.slice(0);
-    
+
     traits.push({
         type: 'number',
         label: 'Value',
@@ -17,7 +17,7 @@ export default (editor, config = {}) => {
         min: 0,
         max: 100
     });
-    
+
     traits.push({
         type: 'select',
         label: 'Type',
@@ -31,21 +31,21 @@ export default (editor, config = {}) => {
             {value: pbDangerClass, name: 'Danger'}
         ]
     });
-    
+
     traits.push({
         type: 'checkbox',
         label: 'Striped',
         name: 'pbStriped',
         changeProp: 1
     });
-    
+
     traits.push({
         type: 'checkbox',
         label: 'Show %',
         name: 'pbPercent',
         changeProp: 1
     });
-    
+
     traits.push({
         type: 'checkbox',
         label: 'Animation',
@@ -57,11 +57,14 @@ export default (editor, config = {}) => {
         init: function () {
         },
 
+        toHTML() {
+            return this.get('pbHtml');
+        },
+
         // Extend default properties
         defaults: Object.assign({}, defaultModel.prototype.defaults, {
             // Can't drop other elements inside it
             droppable: false,
-            editable: false,
 
             type: 'progress-bar',
             tagName: 'div',
@@ -71,6 +74,8 @@ export default (editor, config = {}) => {
             pbStriped: false,
             pbPercent: false,
             pbAnimation: false,
+            
+            pbHtml: '',
 
             // Traits (Settings)
             traits: traits
@@ -90,45 +95,52 @@ export default (editor, config = {}) => {
     let view = defaultView.extend({
 
         init: function (...args) {
-            
             let model = this.model;
 
             this.listenTo(model, 'change:pbStyle change:pbStriped change:pbPercent change:pbAnimation change:pbValue', this.updateProgress);
 
-            // To update the view
-            this.updateProgress();
-            
             defaultView.prototype.init.apply(this, args);
         },
 
         updateProgress: function () {
+            this.el.innerHTML = ``;
+            this.el.appendChild(this.getProgressEle());
+
+            this.model.set('pbHtml', this.el.outerHTML);
+
+            if (!this.el.className.includes('pg-')) {
+                let id = Date.now()
+                this.el.classList.add('pg-' + id);
+            }
+
+            let split = this.el.className.split(' ').filter(w => !w.includes('gjs'));
+            this.model.setClass(split.join(' '));
+        },
+
+        getProgressEle() {
             const style = this.model.get('pbStyle');
             const striped = this.model.get('pbStriped') === true ? pbStripedClass : '';
             const animation = this.model.get('pbAnimation') === true ? pbAnimateClass : '';
             const value = this.model.get('pbValue');
             const percent = this.model.get('pbPercent') === true ? `${value}%` : '';
-            
+
             const _class = `progress-bar ${style} ${striped} ${animation}`;
 
-//            this.model.setClass(_class);
+            var ele = document.createElement('div');
+            ele.setAttribute('role', 'progressbar');
+            ele.setAttribute('aria-valuenow', value);
+            ele.setAttribute('aria-valuemin', '0');
+            ele.setAttribute('aria-valuemax', '100');
+            ele.setAttribute('style', `width: ${value}%;`);
+            ele.setAttribute('class', _class);
+            ele.innerHTML = percent;
+            return ele;
+        },
 
-            // update css class on element
-            var el = this.el;
-            el.innerText = '';
-            
-            var pb = document.createElement('div');
-            pb.setAttribute('class', _class);
-            pb.setAttribute('role', 'progressbar');
-            pb.setAttribute('aria-valuenow', value);
-            pb.setAttribute('aria-valuemin', '0');
-            pb.setAttribute('aria-valuemax', '100');
-            pb.setAttribute('style', `width: ${value}%;`);
-
-            pb.innerText = percent;
-            
-            el.appendChild(pb);
-            
-            this.el = el;
+        render() {
+            defaultView.prototype.render.apply(this);
+            this.updateProgress();
+            return this;
         }
 
     });
