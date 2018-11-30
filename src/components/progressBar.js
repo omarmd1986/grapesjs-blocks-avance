@@ -81,14 +81,14 @@ export default (editor, config = {}) => {
                 maxDim: 100,
 
                 // Handlers
-                tl: 1, // Top left
+                tl: 0, // Top left
                 tc: 1, // Top center
-                tr: 1, // Top right
+                tr: 0, // Top right
                 cl: 1, // Center left
                 cr: 1, // Center right
-                bl: 1, // Bottom left
+                bl: 0, // Bottom left
                 bc: 1, // Bottom center
-                br: 1 // Bottom right
+                br: 0 // Bottom right
             },
 
             type: 'progress-bar',
