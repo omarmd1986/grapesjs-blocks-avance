@@ -43,6 +43,31 @@ export default (editor, config = {}) => {
         defaults: Object.assign({}, linkModel.prototype.defaults, {
             // Can't drop other elements inside it
             droppable: false,
+            resizable: {
+                // Unit used for height resizing
+                unitHeight: 'px',
+
+                // Unit used for width resizing
+                unitWidth: '%',
+
+                currentUnit: 0,
+
+                // Minimum dimension
+                minDim: 5,
+
+                // Maximum dimension
+                maxDim: 100,
+
+                // Handlers
+                tl: 1, // Top left
+                tc: 1, // Top center
+                tr: 1, // Top right
+                cl: 1, // Center left
+                cr: 1, // Center right
+                bl: 1, // Bottom left
+                bc: 1, // Bottom center
+                br: 1 // Bottom right
+            },
 
             type: 'button',
             tagName: 'a',
@@ -68,7 +93,7 @@ export default (editor, config = {}) => {
     let view = linkView.extend({
 
         init: function (...args) {
-            
+
             let model = this.model;
 
             this.listenTo(model, 'change:btnStyle', this.updateButton);
@@ -76,7 +101,7 @@ export default (editor, config = {}) => {
 
             // To update the view
             this.updateButton();
-            
+
             linkView.prototype.init.apply(this, args);
         },
 
